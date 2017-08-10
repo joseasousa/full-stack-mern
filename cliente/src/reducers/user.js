@@ -6,23 +6,24 @@ const InitialState = {
 
 const ip = (state = InitialState, action) => {
   switch (action.type) {
-    case 'LOAD_USER_REQUEST':
+    case 'LOAD_USER_LOGIN':
       return {
         isFetching: true,
-        data: [],
+        data: action.User,
         error: false
       }
+
     case 'LOAD_USER_SUCCESS':
       return {
         isFetching: false,
-        data: action.USER,
+        data: action.User,
         error: false
       }
 
     case 'LOAD_USER_ERROR':
       return {
         isFetching: false,
-        data: action.USER,
+        data: action.User,
         error: true
       }
     default:

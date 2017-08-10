@@ -1,34 +1,24 @@
 import React from 'react'
-import {login} from './LoginApi'
+import { connect } from 'react-redux'
 import serializeForm from 'form-serialize'
 import {Redirect} from 'react-router-dom'
+import { loginRequest } from '../../actions'
 
-class Login extends React.Component {
-  state = {
-    redirectTo: false,
-    user: {}
-  }
+class Login extends React.Component {  
   handleSubmit = (e) => {
     e.preventDefault()
     const values = serializeForm(e.target, {hash: true})
     const {user, password} = values
-
-    login(user, password).then(res => {
-      const v = res.data
-      if (v.length > 0) {
-        this.setState({redirectTo: true})
-      }
-    }).catch((error) => {
-      console.log(error)
-    })
+    values.user = ''
+    values.password = ''
+    this.props.login({user,password})
   }
 
-  render() {
-    const {redirectTo} = this.state
+  render() {    
     return (
       <div className=' col-md-12'>
         
-        {redirectTo && (<Redirect to='/'/>)}
+        {this.props.data.length > 0 && (<Redirect to={this.props.redirectTo}/>)}
 
         <form className='login-form' onSubmit={this.handleSubmit}>
           <div className='row'>
@@ -75,4 +65,20 @@ class Login extends React.Component {
   }
 }
 
-export default Login
+const mapStateToProps = (state) => {
+  return {
+    data: state.user.data,
+    isFetching: state.user.isFetching,
+    error: state.user.error
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    login: user => {
+      dispatch(loginRequest(user))
+    }
+  }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Login)
