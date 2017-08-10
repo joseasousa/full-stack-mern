@@ -1,10 +1,20 @@
-import {put, call} from 'redux-saga/effects'
+import { put } from 'redux-saga/effects'
+import axios from 'axios'
+import { loadUserSuccess } from '../actions'
 
 const URL = 'http://localhost:5001/api/user/login'
 
-function * login (axios) {
-    const dados = yield call(axios.get(URL))
-    yield put()
+function * login (User) {
+  const { user, password } = User.User
+
+  const dados = yield axios.get(URL, {
+    params: {
+      user,
+      password
+    }
+  })
+
+  yield put(loadUserSuccess(dados.data))
 }
 
 export default login
