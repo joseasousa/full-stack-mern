@@ -8,6 +8,7 @@ import Login from './components/login'
 import Form from './components/form'
 import 'bootstrap-css-only'
 import reducers from './reducers'
+import sagas from './sagas'
 
 const sagamiddleware = createSagaMiddeware()
 const store = createStore(
@@ -16,12 +17,15 @@ const store = createStore(
     applyMiddleware(sagamiddleware)
   )
 )
+
+sagamiddleware.run(sagas)
+
 class App extends Component {
   render () {
     return (
       <Provider store={store} >
         <div className='container'>
-          <Route path='/login' render={() => (<Login className='row' />)} />
+          <Route path='/login' render={() => (<Login redirectTo='/' className='row' />)} />
           <Route exact path='/' render={() => (<Form />)} />
         </div>
       </Provider>
