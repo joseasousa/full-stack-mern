@@ -1,19 +1,25 @@
 export const loginRequest = User => {
   return {
-    type: 'LOAD_USER_LOGIN',
+    type: 'LOAD_LOGIN_REQUEST',
     User
   }
 }
 
 export const loadUserError = () => {
   return {
-    type: 'LOAD_USER_ERROR'
+    type: 'LOAD_LOGIN_ERROR'
   }
 }
 
 export const loadUserSuccess = User => {
   return {
-    type: 'LOAD_USER_SUCCESS',
+    type: 'LOAD_LOGIN_SUCCESS',
     User
+  }
+}
+
+export const loadUser = () => {
+  return {
+    type: 'LOAD_USER'
   }
 }

@@ -18,7 +18,7 @@ class Login extends React.Component {
     return (
       <div className=' col-md-12'>
         
-        {this.props.data.length > 0 && (<Redirect to={this.props.redirectTo}/>)}
+        {this.props.login.length > 0 && (<Redirect to={this.props.redirectTo}/>)}
 
         <form className='login-form' onSubmit={this.handleSubmit}>
           <div className='row'>
@@ -67,9 +67,9 @@ class Login extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    data: state.user.data,
-    isFetching: state.user.isFetching,
-    error: state.user.error
+    login: state.login.login,
+    isFetching: state.login.isFetching,
+    error: state.login.error
   }
 }
 
