@@ -14,6 +14,8 @@ function * login (User) {
     }
   })
 
+  localStorage.setItem('user', JSON.stringify(dados.data))
+  
   yield put(loadUserSuccess(dados.data))
 }
 
