@@ -1,34 +1,48 @@
 import React from 'react'
 import serializeForm from 'form-serialize'
+import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
+import { bookRequest, loadUser } from '../../actions'
 import './form.css'
 
 class Form extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
+    this.props.user() 
     this.state = {
       value: 1,
       book: '',
-      estado: ['Ótimo','Bom','Ruim', 'Regular'],
-      books: [{title:'book',_id: 23},{title:'book2',_id: 2}]    
+      estado: ['Ótimo','Bom','Ruim', 'Regular']
     }
   }
 
-  handleSubmit = (e) => {
+  handleSubmit = e => {
     e.preventDefault()
     const values = serializeForm(e.target, { hash: true })
     console.log(values)
   }
-    
+  
+  componentDidMount = () => {        
+     this.props.book()
+  }
+  
   
   render () {
     return (
       <div>
+        {
+          this.props.login.length === 0  && (
+          <Redirect to='/login' />
+        )}
           <form onSubmit={this.handleSubmit} className='form-login' >
             <div>
-               <select name='book' className='custom-select' >                
-                {this.state.books.map((book)=> (
+               <select name='book' className='custom-select' >
+               {
+                 !this.props.isFetching && (
+                 this.props.books.map(book => (
                   <option key={book._id}>{book.title}</option>
-                ))}
+                 )))
+               }
               </select>
             </div>
 
@@ -41,7 +55,7 @@ class Form extends React.Component {
             </div>
             
             <div className='input-group' >
-              <input type='number' name='nota' className='form-control' />
+              <input type='number' name='nota' min='1' max='5' className='form-control' />
             </div>
 
             <div className='input-group' >
@@ -56,4 +70,24 @@ class Form extends React.Component {
   }
 }
 
-export default Form
+const mapStateToProps = (state, ownProps) => {
+  return {
+    books: state.book.books,
+    login: state.login.login,
+    isFetching: state.book.isFetching,
+    error: state.book.error
+  }
+}
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    book: () => {
+      dispatch(bookRequest())
+    },
+    user: () => {
+      dispatch(loadUser)
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Form)

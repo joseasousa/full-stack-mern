@@ -6,9 +6,10 @@ import createSagaMiddeware from 'redux-saga'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import Login from './components/login'
 import Form from './components/form'
-import 'bootstrap-css-only'
 import reducers from './reducers'
 import sagas from './sagas'
+
+import 'bootstrap-css-only'
 
 const sagamiddleware = createSagaMiddeware()
 const store = createStore(
@@ -25,8 +26,9 @@ class App extends Component {
     return (
       <Provider store={store} >
         <div className='container'>
-          <Route path='/login' render={() => (<Login redirectTo='/' className='row' />)} />
           <Route exact path='/' render={() => (<Form />)} />
+          <Route path='/login' render={() => (<Login redirectTo='/' className='row' />)} />
+          <Route path='/admin' render={() => (<Login redirectTo='/' className='row' />)} />          
         </div>
       </Provider>
     )

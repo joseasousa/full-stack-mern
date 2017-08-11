@@ -1,5 +1,5 @@
 const InitialState = {
-  data: [],
+  books: [],
   isFetching: false,
   error: false
 }
@@ -7,25 +7,14 @@ const InitialState = {
 const book = (state = InitialState, action) => {
   switch (action.type) {
     case 'LOAD_BOOK_REQUEST':
-      return {
-        isFetching: true,
-        data: action.Book,
-        error: false
-      }
+      return {isFetching: true, books: action.Books, error: false}
 
-    case 'LOAD_USER_SUCCESS':
-      return {
-        isFetching: false,
-        data: action.Book,
-        error: false
-      }
+    case 'LOAD_BOOK_SUCCESS':
+      return {isFetching: false, books: action.Books, error: false}
 
-    case 'LOAD_USER_ERROR':
-      return {
-        isFetching: false,
-        data: action.Book,
-        error: true
-      }
+    case 'LOAD_BOOK_ERROR':
+      return {isFetching: false, books: action.Books, error: true}
+
     default:
       return state
   }
