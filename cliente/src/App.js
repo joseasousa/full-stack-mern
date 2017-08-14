@@ -1,6 +1,6 @@
-import React, {Component} from 'react'
-import {Route} from 'react-router-dom'
-import {createStore, applyMiddleware} from 'redux'
+import React from 'react'
+import { Route } from 'react-router-dom'
+import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import createSagaMiddeware from 'redux-saga'
 import { composeWithDevTools } from 'redux-devtools-extension'
@@ -21,14 +21,14 @@ const store = createStore(
 
 sagamiddleware.run(sagas)
 
-class App extends Component {
+class App extends React.Component {
   render () {
     return (
       <Provider store={store} >
         <div className='container'>
           <Route exact path='/' render={() => (<Form />)} />
           <Route path='/login' render={() => (<Login redirectTo='/' className='row' />)} />
-          <Route path='/admin' render={() => (<Login redirectTo='/' className='row' />)} />          
+          <Route path='/admin' render={() => (<Login redirectTo='/' className='row' />)} />
         </div>
       </Provider>
     )
