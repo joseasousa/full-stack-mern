@@ -2,7 +2,8 @@ import React from 'react'
 import serializeForm from 'form-serialize'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
-import { bookRequest} from '../../actions'
+import { bookRequest } from '../../actions'
+import { addAvaliacaoApi} from '../../api/index'
 import './form.css'
 
 class Form extends React.Component {
@@ -17,41 +18,44 @@ class Form extends React.Component {
   handleSubmit = e => {
     e.preventDefault()
     const values = serializeForm(e.target, { hash: true })
-    
+    values.book = this.props.books[values.book]
+    console.log(JSON.stringify(values))
+    addAvaliacaoApi(values)
+      .then(message => console.log(message))
+      .catch(err => console.log(err))
   }
   
   componentDidMount = () => {
     this.props.book()
-  }
-  
+  }  
   
   render () {    
     if(this.state.user==null || this.state.user.length === 0){
         return <Redirect to='/login' />
     }
     return (
-      <div>
-        
+      <div>        
           <form 
             onSubmit={this.handleSubmit} 
             className='form-login' >
 
             <div>               
-               {
+              {
                  !this.props.isFetching && (
                   <select name='book' className='custom-select' >
-                  {this.props.books.map((book,index) => (
-                  <option key={book._id} value={index} >{book.title}</option>
-                 ))
-                 }
+                  {
+                    this.props.books.map((book,index) => (
+                      <option key={book._id} value={index} >{book.title}</option>
+                    ))
+                  }
                  </select>)
-               }              
+              }              
             </div>
 
             <div>
             <select name='estado' className='custom-select' >
                 {this.state.estado.map((estado, index)=> (
-                  <option key={index}>{estado}</option>
+                  <option key={index}>{ estado }</option>
                 ))}
               </select>
             </div>
@@ -64,8 +68,7 @@ class Form extends React.Component {
               <textarea name='observacao' className='form-control' />
             </div>
 
-            <button  className='btn btn-success'>Enviar</button>           
-
+            <button  className='btn btn-success'>Enviar</button>
           </form>
       </div>
     )

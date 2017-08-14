@@ -1,18 +1,18 @@
 import axios from 'axios'
 
-const URL = 'http://localhost:5001/api/user/login'
+const URL = 'http://localhost:5001/api/user'
 
-export const userLogin = p => {
+export const userLoginApi = p => {
   const { user, password } = p
-  return axios.get(URL, { params:
+  return axios.get(URL + '/login', { params:
     { user, password }
   })
 }
 
-export const getUsers = () => (
+export const getUsersApi = () => (
     axios.get(URL)
 )
 
-export const addUser = User => (
+export const addUserApi = User => (
     axios.put(URL, User)
 )
