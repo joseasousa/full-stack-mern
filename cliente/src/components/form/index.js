@@ -2,48 +2,50 @@ import React from 'react'
 import serializeForm from 'form-serialize'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
-import { bookRequest, loadUser } from '../../actions'
+import { bookRequest} from '../../actions'
 import './form.css'
 
 class Form extends React.Component {
   constructor(props) {
-    super(props)
-    this.props.user() 
+    super(props)       
     this.state = {
-      value: 1,
-      book: '',
-      estado: ['Ótimo','Bom','Ruim', 'Regular']
+      estado: ['Ótimo','Bom','Ruim', 'Regular'],
+      user: JSON.parse (localStorage.getItem('user'))
     }
   }
 
   handleSubmit = e => {
     e.preventDefault()
     const values = serializeForm(e.target, { hash: true })
-    console.log(values)
+    
   }
   
-  componentDidMount = () => {        
-     this.props.book()
+  componentDidMount = () => {
+    this.props.book()
   }
   
   
-  render () {
+  render () {    
+    if(this.state.user==null || this.state.user.length === 0){
+        return <Redirect to='/login' />
+    }
     return (
       <div>
-        {
-          this.props.login.length === 0  && (
-          <Redirect to='/login' />
-        )}
-          <form onSubmit={this.handleSubmit} className='form-login' >
-            <div>
-               <select name='book' className='custom-select' >
+        
+          <form 
+            onSubmit={this.handleSubmit} 
+            className='form-login' >
+
+            <div>               
                {
                  !this.props.isFetching && (
-                 this.props.books.map(book => (
-                  <option key={book._id}>{book.title}</option>
-                 )))
-               }
-              </select>
+                  <select name='book' className='custom-select' >
+                  {this.props.books.map((book,index) => (
+                  <option key={book._id} value={index} >{book.title}</option>
+                 ))
+                 }
+                 </select>)
+               }              
             </div>
 
             <div>
@@ -83,9 +85,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     book: () => {
       dispatch(bookRequest())
-    },
-    user: () => {
-      dispatch(loadUser)
     }
   }
 }

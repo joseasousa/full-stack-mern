@@ -11,13 +11,12 @@ class Login extends React.Component {
     const {user, password} = values
     values.user = ''
     values.password = ''
-    this.props.login({user,password})
+    this.props.loginR({user,password})
   }
-
-  render() {    
+  
+  render() {
     return (
-      <div className=' col-md-12'>
-        
+      <div className=' col-md-12'>        
         {this.props.login.length > 0 && (<Redirect to={this.props.redirectTo}/>)}
 
         <form className='login-form' onSubmit={this.handleSubmit}>
@@ -75,7 +74,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    login: user => {
+    loginR: user => {
       dispatch(loginRequest(user))
     }
   }

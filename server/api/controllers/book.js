@@ -1,4 +1,4 @@
-module.exports = function (app) {
+module.exports = app => {
   const controller = {}
   const Book = app.models.book
 
@@ -34,10 +34,7 @@ module.exports = function (app) {
         }
     )
   }
-
-  /**
-   * funcao que adciona um Book
-   */
+ 
   controller.addBook = (req, res) => {
     const book = req.body
     Book.create(book,
