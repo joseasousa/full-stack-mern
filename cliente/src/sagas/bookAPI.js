@@ -1,11 +1,9 @@
 import { put } from 'redux-saga/effects'
-import axios from 'axios'
+import { getBooksApi } from '../api'
 import { loadBookSuccess } from '../actions'
 
-const URL = 'http://localhost:5001/api/books'
-
 function * getBooks () {
-  const Books = yield axios.get(URL)
+  const Books = yield getBooksApi()
   yield put(loadBookSuccess(Books.data))
 }
 
