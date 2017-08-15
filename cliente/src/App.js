@@ -7,6 +7,7 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import Login from './components/login'
 import Form from './components/form'
 import reducers from './reducers'
+import Avaliacoes from './components/avaliacoes'
 import sagas from './sagas'
 
 import 'bootstrap-css-only'
@@ -29,6 +30,7 @@ class App extends React.Component {
           <Route exact path='/' render={() => (<Form />)} />
           <Route path='/login' render={() => (<Login redirectTo='/' className='row' />)} />
           <Route path='/admin' render={() => (<Login redirectTo='/' className='row' />)} />
+          <Route path='/avaliacoes' render={() => (<Avaliacoes />)} />
         </div>
       </Provider>
     )
