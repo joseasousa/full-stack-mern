@@ -2,6 +2,6 @@ import axios from 'axios'
 
 const URI = ''
 
-export default getBook = () => (
+export default getBookAPI = () => (
     axios.get(URI)
 )
