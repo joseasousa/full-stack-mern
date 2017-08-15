@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-const URI = ''
+const URL = 'http://localhost:5001/api/books'
 
-export default getBook = () => (
-    axios.get(URI)
+export const getBooksApi = () => (
+    axios.get(URL)
 )
