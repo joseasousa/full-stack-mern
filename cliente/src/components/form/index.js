@@ -19,6 +19,7 @@ class Form extends React.Component {
     e.preventDefault()
     const values = serializeForm(e.target, { hash: true })
     values.book = this.props.books[values.book]
+    values.user = this.state.user[0].user
     console.log(JSON.stringify(values))
     addAvaliacaoApi(values)
       .then(message => console.log(message))
