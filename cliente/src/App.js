@@ -8,6 +8,8 @@ import Login from './components/login'
 import Form from './components/form'
 import reducers from './reducers'
 import Avaliacoes from './components/avaliacoes'
+import Usuario from './components/usuarios'
+import Books from './components/livros'
 import sagas from './sagas'
 
 import 'bootstrap-css-only'
@@ -27,10 +29,12 @@ class App extends React.Component {
     return (
       <Provider store={store} >
         <div className='container'>
-          <Route exact path='/' render={() => (<Form />)} />
-          <Route path='/login' render={() => (<Login redirectTo='/' className='row' />)} />
-          <Route path='/admin' render={() => (<Login redirectTo='/' className='row' />)} />
-          <Route path='/avaliacoes' render={() => (<Avaliacoes />)} />
+          <Route exact path='/' render={() => <Form />} />
+          <Route path='/login' render={() => <Login redirectTo='/' className='row' />} />
+          <Route path='/admin' render={() => <Login redirectTo='/' className='row' />} />
+          <Route path='/avaliacoes' render={() => <Avaliacoes />} />
+          <Route path='/books' render={() => <Books className='row' />} />
+          <Route path='/usuario' render={() => <Usuario className='row' />} />
         </div>
       </Provider>
     )
