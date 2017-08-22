@@ -9,34 +9,40 @@ class Avaliacao extends React.Component {
       message: ''
     }
   }
+
   componentDidMount () {
     getAvaliacoesApi()
     .then(avaliacoes => this.setState({avaliacoes: avaliacoes.data}))
-    .catch(err => this.setState({message: err}))
+    .catch(error => console.log(error))
   }
+
   render () {
     return (
       <div>
-        <table className='table table-striped' >
-          <thead>
-            <tr>
-              <th>Livro</th>
-              <th>Nota</th>
-              <th>Usuario</th>
-            </tr>
-          </thead>
-          <tbody>
-            {
-         this.state.avaliacoes.map(ava => (
-           <tr key={ava._id}>
-             <td>{ava.book.title}</td>
-             <td>{ava.estado}</td>
-             <td>{ava.user}</td>
-           </tr>
-         ))
-        }
-          </tbody>
-        </table>
+        {
+          this.state.avaliacoes.length > 0 && (
+          <table className='table table-striped' >
+            <thead>
+              <tr>
+                <th>Livro</th>
+                <th>Nota</th>
+                <th>Usuario</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {
+                this.state.avaliacoes.map(ava => (
+                  <tr key={ava._id}>
+                    <td>{ava.book.title}</td>
+                    <td>{ava.estado}</td>
+                    <td>{ava.user}</td>
+                  </tr>
+                ))
+              }
+            </tbody>
+          </table>
+          )}
       </div>
     )
   }
