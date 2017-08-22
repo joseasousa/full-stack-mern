@@ -17,16 +17,16 @@ class Avaliacao extends React.Component {
   render () {
     return (
       <div>
-        <table className='table' >
+        <table className='table table-striped' >
           <thead>
-          <tr>
-            <th>Livro</th>
-            <th>Nota</th>
-            <th>Usuario</th>
-          </tr>
+            <tr>
+              <th>Livro</th>
+              <th>Nota</th>
+              <th>Usuario</th>
+            </tr>
           </thead>
           <tbody>
-        {
+            {
          this.state.avaliacoes.map(ava => (
            <tr key={ava._id}>
              <td>{ava.book.title}</td>
@@ -35,7 +35,7 @@ class Avaliacao extends React.Component {
            </tr>
          ))
         }
-        </tbody>
+          </tbody>
         </table>
       </div>
     )
