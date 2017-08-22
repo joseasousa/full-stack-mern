@@ -20,33 +20,29 @@ class Avaliacao extends React.Component {
     return (
       <div>
         {
-          this.state.avaliacoes.length > 0 &&
-          (
-            <table className='table table-striped' >
-              <thead>
-                <tr>
-                  <th>estado</th>
-                  <th>nota</th>
-                  <th>titulo</th>
-                  <th>pagina</th>
-                </tr>
-              </thead>
+          this.state.avaliacoes.length > 0 && (
+          <table className='table table-striped' >
+            <thead>
+              <tr>
+                <th>Livro</th>
+                <th>Nota</th>
+                <th>Usuario</th>
+              </tr>
+            </thead>
 
-              <tbody>
-                {
-                  this.state.avaliacoes.map(ava => (
-                    <tr key={ava._id}>
-                      <td>{ava.estado}</td>
-                      <td>{ava.nota}</td>
-                      <td>{ava.book.title}</td>
-                      <td>{ava.book.pageCount}</td>
-                    </tr>
-                   )
-                )}
-              </tbody>
-            </table>
-          )
-        }
+            <tbody>
+              {
+                this.state.avaliacoes.map(ava => (
+                  <tr key={ava._id}>
+                    <td>{ava.book.title}</td>
+                    <td>{ava.estado}</td>
+                    <td>{ava.user}</td>
+                  </tr>
+                ))
+              }
+            </tbody>
+          </table>
+          )}
       </div>
     )
   }
