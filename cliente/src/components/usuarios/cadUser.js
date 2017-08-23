@@ -2,7 +2,7 @@ import React from 'react'
 import serializeForm from 'form-serialize'
 import { addUserApi } from '../../api'
 
-export default class CadLivros extends React.Component {
+class CadLivros extends React.Component {
     handleSubmit = e => {
         e.preventDefault()
         const values = serializeForm(e.target, { hash: true })  
@@ -27,3 +27,5 @@ export default class CadLivros extends React.Component {
       )
   }
 }
+
+export default CadLivros

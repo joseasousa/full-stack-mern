@@ -39,8 +39,7 @@ export default class Usuario extends Component {
                                         <td>{user.email}</td>
                                         <td>{user.user}</td>
                                     </tr>
-                                ))
-}
+                                ))}
                         </tbody>
                     </table>
           )}
