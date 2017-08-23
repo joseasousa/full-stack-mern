@@ -5,9 +5,7 @@ import {bookRequest} from '../../actions'
 class Livros extends React.Component {
     
     componentDidMount = () => {
-        this
-            .props
-            .book()
+        this.props.book()
     }
 
     render() {
@@ -18,8 +16,8 @@ class Livros extends React.Component {
                         <thead>
                             <tr>
                                 <th>Livro</th>
-                                <th>Nota</th>
-                                <th>Usuario</th>
+                                <th>Paginas</th>
+                                <th>Descricao</th>
                             </tr>
                         </thead>
 
@@ -29,9 +27,11 @@ class Livros extends React.Component {
                                 .books
                                 .map(book => (
                                     <tr key={book._id}>
+                                        <td>
+                                            <img src={book.imageLinks} />
+                                        </td>
                                         <td>{book.title}</td>
-                                        <td>{book.description}</td>
-                                        <td>{book.pageCount}</td>
+                                        <td>{book.pageCount}</td>                                                                              
                                     </tr>
                                 ))
 }

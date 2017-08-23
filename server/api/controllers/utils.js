@@ -20,7 +20,7 @@ module.exports = function (app) {
         pageCount: book.volumeInfo.pageCount,
         isbn: book.volumeInfo.isbn,
         language: book.volumeInfo.language,
-        imageLinks: book.volumeInfo.imageLinks.thumbnail | ''
+        imageLinks: book.volumeInfo.imageLinks.thumbnail
       }))
 
       console.log(books)

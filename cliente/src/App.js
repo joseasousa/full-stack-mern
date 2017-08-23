@@ -9,7 +9,7 @@ import Form from './components/form'
 import reducers from './reducers'
 import Avaliacoes from './components/avaliacoes'
 import Usuario from './components/usuarios'
-import CadLivros from './components/livros/cadLivros'
+import CadUser from './components/usuarios/cadUser'
 import Books from './components/livros'
 import sagas from './sagas'
 
@@ -36,7 +36,7 @@ class App extends React.Component {
           <Route path='/avaliacoes' render={() => <Avaliacoes />} />
           <Route path='/books' render={() => <Books className='row' />} />
           <Route path='/usuarios' render={() => <Usuario className='row' />} />
-          <Route path='/cadlivro' render={() => <CadLivros className='row' />} />
+          <Route path='/caduser' render={() => <CadUser className='row' />} />
         </div>
       </Provider>
     )
