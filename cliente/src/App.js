@@ -31,14 +31,10 @@ class App extends React.Component {
     return (
       <Provider store={store} >
         <div className='container'>
-          <Route exact path='/' render={() => <Form />} />
-          <Route path='/login' render={() => <Login redirectTo='/' className='row' />} />
-          <Route path='/admin' render={() => <Login redirectTo='/' className='row' />} />
-          <Route path='/avaliacoes' render={() => <Avaliacoes />} />
-          <Route path='/livros' render={() => <Books className='row' />} />
-          <Route path='/usuarios' render={() => <Usuario className='row' />} />
-          <Route path='/caduser' render={() => <CadUser className='row' />} />
-          <Route path='/cadlivros' render={() => <CadLivro className='row' />} />
+          <Route exact path='/' render={() => (<Form />)} />
+          <Route path='/login' render={() => (<Login redirectTo='/' className='row' />)} />
+          <Route path='/admin' render={() => (<Login redirectTo='/' className='row' />)} />
+          <Route path='/avaliacoes' render={() => (<Avaliacoes />)} />
         </div>
       </Provider>
     )
