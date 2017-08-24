@@ -4,7 +4,7 @@ import serializeForm from 'form-serialize'
 import {Redirect} from 'react-router-dom'
 import { loginRequest } from '../../actions'
 
-class Login extends React.Component {  
+class Login extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault()
     const values = serializeForm(e.target, {hash: true})
@@ -13,11 +13,13 @@ class Login extends React.Component {
     values.password = ''
     this.props.loginR({user,password})
   }
-  
+
   render() {
     return (
-      <div className=' col-md-12'>        
-        {this.props.login.length > 0 && (<Redirect to={this.props.redirectTo}/>)}
+      <div className=' col-md-12'>
+          {this.props.login.length > 0 && (
+          <Redirect to={this.props.redirectTo}/>
+          )}
 
         <form className='login-form' onSubmit={this.handleSubmit}>
           <div className='row'>
@@ -81,3 +83,4 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(Login)
+

@@ -18,12 +18,12 @@ module.exports = function (app) {
         description: book.volumeInfo.description,
         authors: book.volumeInfo.authors,
         pageCount: book.volumeInfo.pageCount,
-        isbn: book.volumeInfo.isbn,
+        isbn: book.volumeInfo.industryIdentifiers[0].identifier,
         language: book.volumeInfo.language,
-        imageLinks: book.volumeInfo.imageLinks.thumbnail | ''
+        imageLinks: book.volumeInfo.imageLinks.thumbnail
       }))
 
-      console.log(books)
+      console.log(JSON.stringify(books))
       books.map(book => {
         Book.create(book,
             (erro, Book) => {
