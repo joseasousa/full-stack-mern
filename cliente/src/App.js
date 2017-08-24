@@ -8,6 +8,10 @@ import Login from './components/login'
 import Form from './components/form'
 import reducers from './reducers'
 import Avaliacoes from './components/avaliacoes'
+import Usuario from './components/usuarios'
+import CadUser from './components/usuarios/cadUser'
+import CadLivro from './components/livros/cadLivros'
+import Books from './components/livros'
 import sagas from './sagas'
 
 import 'bootstrap-css-only'
@@ -27,10 +31,14 @@ class App extends React.Component {
     return (
       <Provider store={store} >
         <div className='container'>
-          <Route exact path='/' render={() => (<Form />)} />
-          <Route path='/login' render={() => (<Login redirectTo='/' className='row' />)} />
-          <Route path='/admin' render={() => (<Login redirectTo='/' className='row' />)} />
-          <Route path='/avaliacoes' render={() => (<Avaliacoes />)} />
+          <Route exact path='/' render={() => <Form />} />
+          <Route path='/login' render={() => <Login redirectTo='/' className='row' />} />
+          <Route path='/admin' render={() => <Login redirectTo='/' className='row' />} />
+          <Route path='/avaliacoes' render={() => <Avaliacoes />} />
+          <Route path='/livros' render={() => <Books className='row' />} />
+          <Route path='/usuarios' render={() => <Usuario className='row' />} />
+          <Route path='/caduser' render={() => <CadUser className='row' />} />
+          <Route path='/cadlivros' render={() => <CadLivro className='row' />} />
         </div>
       </Provider>
     )

@@ -13,7 +13,7 @@ const ip = (state = InitialState, action) => {
       return {isFetching: false, login: action.User, error: false}
 
     case 'LOAD_LOGIN_ERROR':
-      return {isFetching: false, login: action.User, error: true}   
+      return {isFetching: false, login: action.User, error: true}
 
     default:
       return state

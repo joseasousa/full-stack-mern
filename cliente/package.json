@@ -6,6 +6,7 @@
     "axios": "^0.16.2",
     "bootstrap-css-only": "^3.3.7",
     "form-serialize": "^0.7.2",
+    "griddle-react": "^1.8.0",
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",

@@ -14,5 +14,5 @@ export const getUsersApi = () => (
 )
 
 export const addUserApi = User => (
-    axios.put(URL, User)
+    axios.post(URL, User)
 )
